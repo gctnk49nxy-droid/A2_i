@@ -25,13 +25,13 @@ The way I solved this problem can be broken down into a series of steps:
 
 3. Using a `for` loop and python function `enumerate` we go through the dictionary containing all the book names and book text. From here, we create the individual partitions of the current book of size `num_words` and take a sample of `num_partitions` of those partitions. We get this resulting dataframe representing a sample of the individual partitions from the function called `create_book_partitions` that takes in the book text along with the number of words that make up a partition and number of parition samples we want to select and returns a dataframe of the sampled partitions of the associated book.
 
-The `create_book_partitions` function does some basic cleaning (removing the title in square parenthesis) using regex patterns, removes punctuation from the text so we can tokenize individual words using the nltk `word_tokenize` function, creates the partitions by grouping `num_words` together, enumerates each of the partitions for tracing purposes, places all partitions into a dataframe, then take a random sample of `num_partitions` to make up the resulting dataframe. We use an `if` statement to ensure there are at least `num_parititons` partitions available in the dataframe or else we take all the partitions available for the book of interest. The resulting dataframe of this function has two columns: `partition_text`: The parititoned text (containing `num_words` number of words), `ind_book_partition_id`: The identifier associated to the partition in the associated book of text.
+   The `create_book_partitions` function does some basic cleaning (removing the title in square parenthesis) using regex patterns, removes punctuation from the text so we can tokenize individual words using the nltk `word_tokenize` function, creates the partitions by grouping `num_words` together, enumerates each of the partitions for tracing purposes, places all partitions into a dataframe, then take a random sample of `num_partitions` to make up the resulting dataframe. We use an `if` statement to ensure there are at least `num_parititons` partitions available in the dataframe or else we take all the partitions available for the book of interest. The resulting dataframe of this function has two columns: `partition_text`: The parititoned text (containing `num_words` number of words), `ind_book_partition_id`: The identifier associated to the partition in the associated book of text.
 
-4. We assign the individual book an alphabetical letter to be the book's identifier, where the mapping is stored in `book_id_mapping`. Then the results are appended to to the resulting sample partition dataframe to the `all_books_df` dataframe.
+5. We assign the individual book an alphabetical letter to be the book's identifier, where the mapping is stored in `book_id_mapping`. Then the results are appended to to the resulting sample partition dataframe to the `all_books_df` dataframe.
    
-5. We repeat this process for all books in the dictionary
+6. We repeat this process for all books in the dictionary
 
-6. Randomly shuffle the `all_books_df` to create the final `all_books_df_shuffled` dataframe.
+7. Randomly shuffle the `all_books_df` to create the final `all_books_df_shuffled` dataframe.
 
 ## 3-Output
 

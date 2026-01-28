@@ -27,8 +27,15 @@ The way I solved this problem can be broken down into a series of steps:
 
 The `create_book_partitions` function does some basic cleaning (removing the title in square parenthesis) using regex patterns, removes punctuation from the text so we can tokenize individual words using the nltk `word_tokenize` function, creates the partitions by grouping `num_words` together, enumerates each of the partitions for tracing purposes, places all partitions into a dataframe, then take a random sample of `num_partitions` to make up the resulting dataframe. We use an `if` statement to ensure there are at least `num_parititons` partitions available in the dataframe or else we take all the partitions available for the book of interest. The resulting dataframe of this function has two columns: `partition_text`: The parititoned text (containing `num_words` number of words), `ind_book_partition_id`: The identifier associated to the partition in the associated book of text.
 
-4. We assign the individual book an alphabetical letter to be the book's identifier, where the mapping is stored in `book_id_mapping`. Then the results are appended to to the resulting `all_books_df`.
+4. We assign the individual book an alphabetical letter to be the book's identifier, where the mapping is stored in `book_id_mapping`. Then the results are appended to to the resulting sample partition dataframe to the `all_books_df` dataframe.
    
-5. We repeat this process for all books in the dictionary  
+5. We repeat this process for all books in the dictionary
+
+6. Randomly shuffle the `all_books_df` to create the final `all_books_df_shuffled` dataframe.
 
 ## 3-Output
+
+The final output of this program is a dataframe called `all_books_df_shuffled`. This dataframe contains the sampled partition of the books in the `book_text` dictionary. The columns of this dataframe are:
+- ind_book_id: The book ID assigned to the related book. To check the mapping back, you can look within the dictionary `book_id_mapping`
+- partition_text: The associated partitioned text from book ind_book_id
+- ind_book_partition_id: For the associated ind_book_id, ind_book_partition_id corresponds to the parition in that book that this text refers to. This is for tracing purposes, if we want to find the source text in the original dataframe

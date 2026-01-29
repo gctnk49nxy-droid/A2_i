@@ -39,3 +39,5 @@ The final output of this program is a dataframe called `all_books_df_shuffled`. 
 - ind_book_id: The book ID assigned to the related book. To check the mapping back, you can look within the dictionary `book_id_mapping`
 - partition_text: The associated partitioned text from book ind_book_id
 - ind_book_partition_id: For the associated ind_book_id, ind_book_partition_id corresponds to the parition in that book that this text refers to. This is for tracing purposes, if we want to find the source text in the original dataframe
+
+This dataframe is saved as a .csv file in the directory the python file is located.
